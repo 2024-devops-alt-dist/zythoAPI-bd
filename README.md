@@ -69,9 +69,9 @@ The server will be available at http://localhost:3000.
 
 #### Scripts
 
-`npm run dev`: Start the application in development mode with hot-reloading (using ts-node-dev).
-`npm run build`: Compile the TypeScript files into JavaScript (output to dist/ directory).
-`npm run serve`: Serve the compiled JavaScript files (production mode).
+`npm run dev`: Start the application in development mode with hot-reloading (using ts-node-dev).  
+`npm run build`: Compile the TypeScript files into JavaScript (output to dist/ directory).  
+`npm run serve`: Serve the compiled JavaScript files (production mode).  
 `npm run clean`: Clean the dist/ directory.
 
 #### Project Structure
