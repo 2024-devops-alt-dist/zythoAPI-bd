@@ -99,4 +99,6 @@ vendor
 .watchman-cookie-*
 .rollup.cache
 
+.env
+
 /public/videos/
