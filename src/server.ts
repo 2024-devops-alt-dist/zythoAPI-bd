@@ -23,6 +23,7 @@ app.get("/db-test", async (req, res) => {
 	}
 });
 
+// connection to database
 const testDBConnection = async () => {
 	try {
 		await pool.connect();
