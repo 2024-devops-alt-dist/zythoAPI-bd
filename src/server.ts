@@ -7,8 +7,20 @@ import { pool } from "./db/config";
 
 const PORT = 3000;
 
+// --- test routes ---
 app.get("/test", (req, res) => {
 	res.send("Hello server from test route");
+});
+app.get("/db-test", async (req, res) => {
+	try {
+		const result = await pool.query("SELECT NOW()");
+		res
+			.status(200)
+			.json({ message: "Database connected", time: result.rows[0] });
+	} catch (err) {
+		console.error("Database test failed:", err);
+		res.status(500).json({ error: "Database connection failed" });
+	}
 });
 
 const testDBConnection = async () => {
