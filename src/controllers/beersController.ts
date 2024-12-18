@@ -29,4 +29,40 @@ export const beersController = {
 			res.status(500).json({ error: "Internal Server Error" });
 		}
 	},
+	createBeer: async (req: Request, res: Response): Promise<void> => {
+		const { name, description, abv, brewery_id, category_id } =
+			req.body;
+
+		// Validate required fields
+		if (
+			!name ||
+			!description ||
+			!abv ||
+			!brewery_id ||
+			!category_id
+		) {
+			res.status(400).json({
+				error:
+					"Missing required fields. Please provide name, description, abv, brewery_id, and category_id",
+			});
+			return;
+		}
+
+		try {
+			const result = await pool.query(
+				`INSERT INTO beers (name, description, abv, brewery_id, category_id) 
+				 VALUES ($1, $2, $3, $4, $5) 
+				 RETURNING *`,
+				[name, description, abv, brewery_id, category_id]
+			);
+
+			res.status(201).json({
+				message: "Beer created successfully",
+				beer: result.rows[0],
+			});
+		} catch (error) {
+			console.error("Error creating beer", error);
+			res.status(500).json({ error: "Internal Server Error" });
+		}
+	},
 };

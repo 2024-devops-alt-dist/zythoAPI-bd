@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/", beersController.getAll);
 router.get("/:id", beersController.getDetails);
-// router.post("/", beersController.create)
+router.post("/", beersController.createBeer);
 // router.put("/:id", beersController.update)
 // router.delete("/:id", beersController.delete)
 
