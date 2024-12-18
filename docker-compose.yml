@@ -12,6 +12,31 @@ services:
     volumes:
       - PostgreSQLdb:/var/lib/postgresql/data
       - ./db-scripts:/docker-entrypoint-initdb.d/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d PostgreSQLdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    container_name: zythologue-api
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=postgres
+      - DB_USER=admin
+      - DB_PASSWORD=password
+      - DB_NAME=PostgreSQLdb
+      - DB_PORT=5432
+    volumes:
+      - ./src:/app/src
+      - /app/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   PostgreSQLdb:
