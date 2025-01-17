@@ -52,6 +52,7 @@ docker-compose up --build
 ```
 
 The application will be available at:
+
 - API: http://localhost:3000
 - API Documentation: http://localhost:3000/api-docs
 
@@ -60,16 +61,19 @@ The application will be available at:
 If you prefer to run the API locally while using the dockerized database:
 
 1. Start only the database:
+
 ```bash
 docker-compose up -d postgres
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the application:
+
 ```bash
 npm run dev
 ```
@@ -109,6 +113,7 @@ zythologueapi-bd/
 ## API Documentation
 
 The API documentation is available through Swagger UI at `/api-docs` when the application is running. It provides:
+
 - Detailed endpoint descriptions
 - Request/response schemas
 - Interactive API testing interface
@@ -117,16 +122,24 @@ The API documentation is available through Swagger UI at `/api-docs` when the ap
 ## Troubleshooting
 
 1. **Database Connection Issues**:
+
    - Ensure PostgreSQL container is running: `docker ps`
    - Check environment variables match docker-compose.yml
    - Verify database port is not in use
 
 2. **API Container Issues**:
+
    - Check container logs: `docker-compose logs api`
    - Ensure all required environment variables are set
    - Verify port 3000 is not in use
 
 3. **Development Mode Issues**:
+
    - Clear node_modules: `rm -rf node_modules && npm install`
    - Ensure TypeScript is compiled: `npm run build`
    - Check for compilation errors in the console
+
+4. **Container Management**:
+   - Stop all containers: `docker-compose down`
+   - Rebuild and restart containers: `docker-compose up --build`
+   - View container logs: `docker-compose logs -f`
